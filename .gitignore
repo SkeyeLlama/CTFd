@@ -52,3 +52,8 @@ docs/_build/
 
 # PyBuilder
 target/
+
+#LiveData
+.ctfd_secret_key
+CTFd/ctfd.db
+
