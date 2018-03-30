@@ -6,18 +6,18 @@ from CTFd import utils
 import math
 
 
-class DynamicValueChallenge(BaseChallenge):
+class BSidesCTDynValChal(BaseChallenge):
     id = "dynamic"  # Unique identifier used to register challenges
     name = "dynamic"  # Name of a challenge type
     templates = {  # Handlebars templates used for each aspect of challenge editing & viewing
-        'create': '/plugins/DynamicValueChallenge/assets/dynamic-challenge-create.njk',
-        'update': '/plugins/DynamicValueChallenge/assets/dynamic-challenge-update.njk',
-        'modal': '/plugins/DynamicValueChallenge/assets/dynamic-challenge-modal.njk',
+        'create': '/plugins/BSidesCTDynValChal/assets/dynamic-challenge-create.njk',
+        'update': '/plugins/BSidesCTDynValChal/assets/dynamic-challenge-update.njk',
+        'modal': '/plugins/BSidesCTDynValChal/assets/dynamic-challenge-modal.njk',
     }
     scripts = {  # Scripts that are loaded when a template is loaded
-        'create': '/plugins/DynamicValueChallenge/assets/dynamic-challenge-create.js',
-        'update': '/plugins/DynamicValueChallenge/assets/dynamic-challenge-update.js',
-        'modal': '/plugins/DynamicValueChallenge/assets/dynamic-challenge-modal.js',
+        'create': '/plugins/BSidesCTDynValChal/assets/dynamic-challenge-create.js',
+        'update': '/plugins/BSidesCTDynValChal/assets/dynamic-challenge-update.js',
+        'modal': '/plugins/BSidesCTDynValChal/assets/dynamic-challenge-modal.js',
     }
 
     @staticmethod
@@ -87,10 +87,10 @@ class DynamicValueChallenge(BaseChallenge):
             'max_attempts': challenge.max_attempts,
             'type': challenge.type,
             'type_data': {
-                'id': DynamicValueChallenge.id,
-                'name': DynamicValueChallenge.name,
-                'templates': DynamicValueChallenge.templates,
-                'scripts': DynamicValueChallenge.scripts,
+                'id': BSidesCTDynValChal.id,
+                'name': BSidesCTDynValChal.name,
+                'templates': BSidesCTDynValChal.templates,
+                'scripts': BSidesCTDynValChal.scripts,
             }
         }
         return challenge, data
@@ -227,5 +227,5 @@ class DynamicChallenge(Challenges):
 
 def load(app):
     app.db.create_all()
-    CHALLENGE_CLASSES['dynamic'] = DynamicValueChallenge
-    register_plugin_assets_directory(app, base_path='/plugins/DynamicValueChallenge/assets/')
+    CHALLENGE_CLASSES['dynamic'] = BSidesCTDynValChal
+    register_plugin_assets_directory(app, base_path='/plugins/BSidesCTDynValChal/assets/')
