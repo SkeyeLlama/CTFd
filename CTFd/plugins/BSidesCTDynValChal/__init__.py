@@ -172,18 +172,13 @@ class BSidesCTDynValChal(BaseChallenge):
         chal = DynamicChallenge.query.filter_by(id=chal.id).first()
 
         solve_count = Solves.query.join(Teams, Solves.teamid == Teams.id).filter(Solves.chalid==chal.id, Teams.banned==False).count()
-        print(chal.minimum)
-        print(chal.initial)
-        print(chal.decay)
-        value = math.ceil(int(chal.initial) * math.exp(-.25 * solve_count))
-        #value = int(math.ceil(chal.initial * math.exp((chal.decay / (-100)) * (solve_count))))
-        #value = (((chal.minimum - chal.initial)/(chal.decay**2)) * (solve_count**2)) + chal.initial
-        #value = math.ceil(value)
-        #value = 9000
-        if value < chal.minimum:
+        value = math.ceil(int(chal.initial) * math.exp((chal.decay / (-100.00)) * solve_count))
+        
+	if value < chal.minimum:
             value = chal.minimum
 
         chal.value = value
+	print("New Challenge Value " + str(chal.value) + "for " + str(chal.name))
 
         provided_key = request.form['key'].strip()
         solve = Solves(teamid=team.id, chalid=chal.id, ip=utils.get_ip(req=request), flag=provided_key)
