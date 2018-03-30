@@ -53,7 +53,26 @@ docs/_build/
 # PyBuilder
 target/
 
+<<<<<<< HEAD
 #LiveData
 .ctfd_secret_key
 CTFd/ctfd.db
 
+=======
+.DS_Store
+
+*.db
+*.log
+.idea/
+CTFd/static/uploads
+CTFd/uploads
+.data/
+.ctfd_secret_key
+.*.swp
+
+# Vagrant
+.vagrant
+
+# CTFd Exports
+*.zip
+>>>>>>> 3bd198639366f9373ee160c4be9a70911b6e4cf4
