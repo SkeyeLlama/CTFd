@@ -407,7 +407,10 @@ def login():
 
                 login_user(user)
                 log(
-                    "logins", "info", "[{date}] {ip} - {name} logged in", name=user.name,
+                    "logins",
+                    "info",
+                    "[{date}] {ip} - {name} logged in",
+                    name=user.name,
                 )
 
                 db.session.close()
