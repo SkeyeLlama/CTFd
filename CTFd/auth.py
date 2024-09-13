@@ -407,10 +407,7 @@ def login():
 
                 login_user(user)
                 log(
-                    "logins",
-                    "info",
-                    "[{date}] {ip} - {name} logged in",
-                    name=user.name
+                    "logins", "info", "[{date}] {ip} - {name} logged in", name=user.name,
                 )
 
                 db.session.close()
@@ -603,19 +600,11 @@ def oauth_redirect():
 
             return redirect(url_for("challenges.listing"))
         else:
-            log(
-                "logins",
-                "warning",
-                "[{date}] {ip} - OAuth token retrieval failure"
-            )
+            log("logins", "warning", "[{date}] {ip} - OAuth token retrieval failure")
             error_for(endpoint="auth.login", message="OAuth token retrieval failure.")
             return redirect(url_for("auth.login"))
     else:
-        log(
-            "logins",
-            "info",
-            "[{date}] {ip} - Received redirect without OAuth code"
-        )
+        log("logins", "info", "[{date}] {ip} - Received redirect without OAuth code")
         error_for(
             endpoint="auth.login", message="Received redirect without OAuth code."
         )

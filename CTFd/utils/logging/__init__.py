@@ -7,8 +7,7 @@ from flask import session
 from CTFd.utils.user import get_ip
 
 
-#Common logging function.
-#Valid Severities: debug, info, warning, error, critical
+# Valid Severities: debug, info, warning, error, critical
 def log(logger, severity, format, **kwargs):
     logger = logging.getLogger(logger)
     props = {
@@ -18,16 +17,18 @@ def log(logger, severity, format, **kwargs):
     }
     props.update(kwargs)
     msg = format.format(**props)
-    if severity == 'debug':
+    if severity == "debug":
         logger.debug(msg)
-    elif severity == 'info':
+    elif severity == "info":
         logger.info(msg)
-    elif severity == 'warning':
+    elif severity == "warning":
         logger.warning(msg)
-    elif severity == 'error':
+    elif severity == "error":
         logger.error(msg)
-    elif severity == 'critical':
+    elif severity == "critical":
         logger.critical(msg)
     else:
-        logger.warning('Subsequent log message submitted with invalid severity. Defaulting to info')
+        logger.warning(
+            "Subsequent log message submitted with invalid severity. Defaulting to info"
+        )
         logger.info(msg)
