@@ -407,9 +407,9 @@ def login():
 
                 login_user(user)
                 log(
-                    "logins", 
-                    "info", 
-                    "[{date}] {ip} - {name} logged in", 
+                    "logins",
+                    "info",
+                    "[{date}] {ip} - {name} logged in",
                     name=user.name
                 )
 
@@ -434,8 +434,8 @@ def login():
         else:
             # This user just doesn't exist
             log(
-                "logins", 
-                "warning", 
+                "logins",
+                "warning",
                 "[{date}] {ip} - submitted invalid account information",
             )
             errors.append("Your username or password is incorrect")
@@ -482,8 +482,8 @@ def oauth_redirect():
     state = request.args.get("state")
     if session["nonce"] != state:
         log(
-            "logins", 
-            "warning", 
+            "logins",
+            "warning",
             "[{date}] {ip} - OAuth State validation mismatch",
         )
         error_for(endpoint="auth.login", message="OAuth State validation mismatch.")
@@ -550,8 +550,8 @@ def oauth_redirect():
                     db.session.commit()
                 else:
                     log(
-                        "logins", 
-                        "warning", 
+                        "logins",
+                        "warning",
                         "[{date}] {ip} - Public registration via MLC blocked",
                     )
                     error_for(
@@ -604,16 +604,16 @@ def oauth_redirect():
             return redirect(url_for("challenges.listing"))
         else:
             log(
-                "logins", 
-                "warning", 
+                "logins",
+                "warning",
                 "[{date}] {ip} - OAuth token retrieval failure"
             )
             error_for(endpoint="auth.login", message="OAuth token retrieval failure.")
             return redirect(url_for("auth.login"))
     else:
         log(
-            "logins", 
-            "info", 
+            "logins",
+            "info",
             "[{date}] {ip} - Received redirect without OAuth code"
         )
         error_for(
