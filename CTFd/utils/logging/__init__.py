@@ -6,6 +6,7 @@ from flask import session
 
 from CTFd.utils.user import get_ip
 
+
 #Common logging function.
 #Valid Severities: debug, info, warning, error, critical
 def log(logger, severity, format, **kwargs):
