@@ -406,7 +406,12 @@ def login():
                 session.regenerate()
 
                 login_user(user)
-                log("logins", "info", "[{date}] {ip} - {name} logged in", name=user.name)
+                log(
+                    "logins", 
+                    "info", 
+                    "[{date}] {ip} - {name} logged in", 
+                    name=user.name
+                )
 
                 db.session.close()
                 if request.args.get("next") and validators.is_safe_url(
@@ -428,7 +433,11 @@ def login():
                 return render_template("login.html", errors=errors)
         else:
             # This user just doesn't exist
-            log("logins", "warning", "[{date}] {ip} - submitted invalid account information",)
+            log(
+                "logins", 
+                "warning", 
+                "[{date}] {ip} - submitted invalid account information",
+            )
             errors.append("Your username or password is incorrect")
             db.session.close()
             return render_template("login.html", errors=errors)
@@ -472,7 +481,11 @@ def oauth_redirect():
     oauth_code = request.args.get("code")
     state = request.args.get("state")
     if session["nonce"] != state:
-        log("logins", "warning", "[{date}] {ip} - OAuth State validation mismatch",)
+        log(
+            "logins", 
+            "warning", 
+            "[{date}] {ip} - OAuth State validation mismatch",
+        )
         error_for(endpoint="auth.login", message="OAuth State validation mismatch.")
         return redirect(url_for("auth.login"))
 
@@ -536,7 +549,11 @@ def oauth_redirect():
                     db.session.add(user)
                     db.session.commit()
                 else:
-                    log("logins", "warning", "[{date}] {ip} - Public registration via MLC blocked",)
+                    log(
+                        "logins", 
+                        "warning", 
+                        "[{date}] {ip} - Public registration via MLC blocked",
+                    )
                     error_for(
                         endpoint="auth.login",
                         message="Public registration is disabled. Please try again later.",
@@ -586,11 +603,19 @@ def oauth_redirect():
 
             return redirect(url_for("challenges.listing"))
         else:
-            log("logins", "warning", "[{date}] {ip} - OAuth token retrieval failure")
+            log(
+                "logins", 
+                "warning", 
+                "[{date}] {ip} - OAuth token retrieval failure"
+            )
             error_for(endpoint="auth.login", message="OAuth token retrieval failure.")
             return redirect(url_for("auth.login"))
     else:
-        log("logins", "info", "[{date}] {ip} - Received redirect without OAuth code")
+        log(
+            "logins", 
+            "info", 
+            "[{date}] {ip} - Received redirect without OAuth code"
+        )
         error_for(
             endpoint="auth.login", message="Received redirect without OAuth code."
         )
