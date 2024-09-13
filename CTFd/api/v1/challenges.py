@@ -582,6 +582,7 @@ class ChallengeAttempt(Resource):
                 )
             log(
                 "submissions",
+                "info",
                 "[{date}] {name} submitted {submission} on {challenge_id} with kpm {kpm} [TOO FAST]",
                 name=user.name,
                 submission=request_data.get("submission", "").encode("utf-8"),
@@ -631,6 +632,7 @@ class ChallengeAttempt(Resource):
 
                 log(
                     "submissions",
+                    "info",
                     "[{date}] {name} submitted {submission} on {challenge_id} with kpm {kpm} [CORRECT]",
                     name=user.name,
                     submission=request_data.get("submission", "").encode("utf-8"),
@@ -651,6 +653,7 @@ class ChallengeAttempt(Resource):
 
                 log(
                     "submissions",
+                    "info",
                     "[{date}] {name} submitted {submission} on {challenge_id} with kpm {kpm} [WRONG]",
                     name=user.name,
                     submission=request_data.get("submission", "").encode("utf-8"),
@@ -684,6 +687,7 @@ class ChallengeAttempt(Resource):
         else:
             log(
                 "submissions",
+                "info",
                 "[{date}] {name} submitted {submission} on {challenge_id} with kpm {kpm} [ALREADY SOLVED]",
                 name=user.name,
                 submission=request_data.get("submission", "").encode("utf-8"),
